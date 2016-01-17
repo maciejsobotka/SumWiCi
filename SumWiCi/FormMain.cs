@@ -10,10 +10,11 @@ using System.Windows.Forms;
 
 namespace SumWiCi
 {
-    public partial class Form1 : Form
+    public partial class FormMain : Form
     {
-        string SelectedFileName { get; set; }
-        public Form1()
+        public string SelectedFileName { get; set; }
+        private SumWiCi sWiCi;
+        public FormMain()
         {
             InitializeComponent();
         }
@@ -24,22 +25,25 @@ namespace SumWiCi
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
 
             // Set filter options and filter index.
-            openFileDialog1.Filter = "Text Files (.txt)|*.txt";
+            openFileDialog.Filter = "Text Files (.txt)|*.txt";
 
-            openFileDialog1.Multiselect = false;
+            openFileDialog.Multiselect = false;
             String pathDefault = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            openFileDialog1.InitialDirectory = pathDefault;
+            openFileDialog.InitialDirectory = pathDefault;
             // Call the ShowDialog method to show the dialog box.
-            openFileDialog1.ShowDialog();
+            openFileDialog.ShowDialog();
+
             buttonStart.Enabled = true;
-            SelectedFileName = openFileDialog1.FileName;
+            SelectedFileName = openFileDialog.FileName;
+            textBox1.Text = openFileDialog.SafeFileName;
+            sWiCi = new SumWiCi(SelectedFileName);
+            richTextBox1.Text = sWiCi.TasksToString();
         }
 
         private void buttonStart_Click(object sender, EventArgs e)
         {
-            SumWiCi sWiCi = new SumWiCi(SelectedFileName);
-            textBox1.Text = sWiCi.GetSumWiCiFromBehind().ToString();
-            richTextBox1.AppendText(sWiCi.permToString());
+            textBox2.Text = sWiCi.GetSumWiCiFromBehind().ToString();
+            textBox3.Text = sWiCi.PermToString();
         }
     }
 }

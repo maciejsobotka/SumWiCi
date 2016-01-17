@@ -96,15 +96,23 @@ namespace SumWiCi
             return tab[tabSize - 1];
         }
 
+        public string TasksToString()
+        {
+            string tasksToString = "Tasks:\n\n";
+            for (int i = 0; i < Tasks.Length; ++i)
+                tasksToString += (i + 1).ToString() + "    " + Tasks[i].p + "    " + Tasks[i].w + '\n';
+            return tasksToString;
+        }
+
         public string TabToString()
         {
-            string tabToString="";
+            string tabToString = "";
             foreach (int i in tab)
-                tabToString += (i.ToString() + ' ');
+                tabToString += i.ToString() + ' ';
             return tabToString;
         }
 
-        public string permToString()
+        public string PermToString()
         {
             int x = 1 << n;
             return perm[x - 1];
