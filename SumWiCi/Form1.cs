@@ -38,7 +38,8 @@ namespace SumWiCi
         private void buttonStart_Click(object sender, EventArgs e)
         {
             SumWiCi sWiCi = new SumWiCi(SelectedFileName);
-            textBox1.Text = sWiCi.GetSumWiCi().ToString();
+            textBox1.Text = sWiCi.GetSumWiCiFromBehind().ToString();
+            richTextBox1.AppendText(sWiCi.permToString());
         }
     }
 }
