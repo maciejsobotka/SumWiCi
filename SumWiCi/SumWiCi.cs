@@ -9,7 +9,7 @@ namespace SumWiCi
 {
     class SumWiCi
     {
-        private int n;          // ilość zadań
+        public int n {get; set;}         // ilość zadań
         private int c;          // czas wykonania wszystkich zadań
         private int[] tab;      // tablica z podzadaniami
         private string[] perm;     // tablica z permutacją

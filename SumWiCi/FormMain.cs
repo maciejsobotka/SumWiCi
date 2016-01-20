@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -42,8 +44,15 @@ namespace SumWiCi
 
         private void buttonStart_Click(object sender, EventArgs e)
         {
+            Stopwatch watch = new Stopwatch();
+            watch.Start();
             textBox2.Text = sWiCi.GetSumWiCiFromBehind().ToString();
+            watch.Stop();
             textBox3.Text = sWiCi.PermToString();
+            using (StreamWriter sw = File.AppendText("times.txt"))
+            {
+                sw.WriteLine(sWiCi.n.ToString() + ' ' + watch.Elapsed);
+            }
         }
     }
 }
